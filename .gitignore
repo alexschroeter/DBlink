@@ -1,0 +1,6 @@
+demo/__pycache__/
+*.egg-info
+
+demo/tmp_results/
+demo/X_test
+demo/y_test
