@@ -1,0 +1,77 @@
+[project]
+name = "DBlink"
+version = "1.0.0"
+description = "One-click image reconstruction in single-molecule localization microscopy via deep learning"
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    # Core scientific computing
+    "numpy>=2.1.2",
+    "scipy>=1.15.3",
+    "scikit-image>=0.25.2",
+    "scikit-learn>=1.7.2",
+    "matplotlib>=3.10.7",
+    "pandas>=2.3.3",
+    
+    # Image processing
+    "imageio>=2.37.2",
+    "tifffile>=2025.5.10",
+    "pillow>=11.3.0",
+    "opencv-python>=4.12.0",
+    
+    # Web interface
+    "gradio>=5.49.1",
+    "fastapi>=0.121.2",
+    "uvicorn>=0.38.0",
+    
+    # Utilities
+    "h5py>=3.15.1",
+    "pyyaml>=6.0.3",
+    "tqdm>=4.67.1",
+    "click>=8.3.1",
+]
+
+[project.optional-dependencies]
+# For NVIDIA CUDA GPUs
+cuda = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+]
+
+# For AMD ROCm GPUs
+rocm = [
+    "torch",
+    "torchvision",
+    "pytorch-triton-rocm",
+]
+
+# Development dependencies
+dev = [
+    "ipykernel>=7.1.0",
+    "ipython>=8.37.0",
+    "jupyter-client>=8.6.3",
+    "ruff>=0.14.5",
+]
+
+[build-system]
+requires = ["setuptools>=80.9.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["DS3Dplus*"]
+exclude = ["dataset1*", "dataset2*", "in_situ_data*"]
+
+[[tool.uv.index]]
+name = "pytorch-rocm"
+url = "https://download.pytorch.org/whl/nightly/rocm7.0"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-rocm" }
+torchvision = { index = "pytorch-rocm" }
+pytorch-triton-rocm = { index = "pytorch-rocm" }
+
+[tool.uv]
+prerelease = "allow"
