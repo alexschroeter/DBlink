@@ -85,13 +85,13 @@ if(TrainNetFlag):
 
     trainer = LSTM_Trainer(model, criterion, optimizer, scheduler, batch_size, patience=patience, device=device)
     trainer.fit(dl_train, dl_val, num_epochs=epochs)
-    torch.save(model.state_dict(), os.path.join(path_to_model, model_name))
+    torch.save(model.state_dict(), os.path.join(path, model_name))
 else:
     model.load_state_dict(torch.load(model_name, map_location=torch.device(device)))
 
 ####### Step V - Testing the model #######
 if(TestOnRealData):
-    analyze_storm_exp_overlap(path_to_model=os.path.join(path_to_model, model_name),
+    analyze_storm_exp_overlap(path_to_model=os.path.join(path, model_name),
                               exp_class=demo_params(),
                               hidden_channels=hidden_channels,
                               num_layers=num_layers,
@@ -121,7 +121,7 @@ else:
 
     model = ConvOverlapBLSTM(input_size=(img_size, img_size), input_channels=1, hidden_channels=hidden_channels,
                                 num_layers=num_layers, device=device).to(device)
-    model.load_state_dict(torch.load(os.path.join(path_to_model, model_name), map_location=torch.device(device)))
+    model.load_state_dict(torch.load(os.path.join(path, model_name), map_location=torch.device(device)))
 
     down = torch.zeros(X_test.size(1), requires_grad=False, dtype=torch.int)
     up = torch.zeros(X_test.size(1), requires_grad=False, dtype=torch.int)
