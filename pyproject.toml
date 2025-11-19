@@ -33,18 +33,6 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# For NVIDIA CUDA GPUs
-cuda = [
-    "torch>=2.0.0",
-    "torchvision>=0.15.0",
-]
-
-# For AMD ROCm GPUs
-rocm = [
-    "torch",
-    "torchvision",
-    "pytorch-triton-rocm",
-]
 
 # Development dependencies
 dev = [
@@ -62,16 +50,3 @@ build-backend = "setuptools.build_meta"
 where = ["."]
 include = ["DS3Dplus*"]
 exclude = ["dataset1*", "dataset2*", "in_situ_data*"]
-
-[[tool.uv.index]]
-name = "pytorch-rocm"
-url = "https://download.pytorch.org/whl/nightly/rocm7.0"
-explicit = true
-
-[tool.uv.sources]
-torch = { index = "pytorch-rocm" }
-torchvision = { index = "pytorch-rocm" }
-pytorch-triton-rocm = { index = "pytorch-rocm" }
-
-[tool.uv]
-prerelease = "allow"
