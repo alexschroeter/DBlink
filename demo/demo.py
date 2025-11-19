@@ -76,7 +76,7 @@ patience = 3
 model = ConvBLSTM(input_size=(img_size, img_size), input_channels=1, hidden_channels=hidden_channels, num_layers=num_layers, device=device).to(device)
 criterion = nn.MSELoss()
 optimizer = optim.Adam(model.parameters(), lr=lr, betas=betas)
-scheduler = ReduceLROnPlateau(optimizer, 'min', patience=patience, min_lr=1e-9, verbose=True)
+scheduler = ReduceLROnPlateau(optimizer, 'min', patience=patience, min_lr=1e-9)
 
 ####### Step IV - Training the model #######
 if(TrainNetFlag):
