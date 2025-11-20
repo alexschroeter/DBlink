@@ -24,7 +24,7 @@ First clone the repository and enter the folder.
 
 ### UV / PIP
 
-1. Setup the virtual environment of your choice.
+1. Setup the virtual environment of your choice. Python 3.10 is needed for recent PyTorch using AMD GPUs.
 
     `uv venv --python 3.10` or `python -m venv .venv`
 
